@@ -30,7 +30,7 @@ def p_condition(p):
     pass
 
 def p_increment(p):
-    '''increment : IDENTIFIER PLUSPLUS'''
+    '''increment : IDENTIFIER PLUS'''
     pass
 
 # ----------------

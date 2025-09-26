@@ -12,7 +12,7 @@ tokens = (
     'SEMI',
     'ASSIGN',
     'RELOP',
-    'PLUSPLUS',
+    'PLUS',
     'LBRACE',
     'RBRACE',
     'DOT',
@@ -31,7 +31,7 @@ t_RPAREN    = r'\)'
 t_SEMI      = r';'
 t_ASSIGN    = r'='
 t_RELOP     = r'>=|<=|<|>|==|!='
-t_PLUSPLUS  = r'\+\+'
+t_PLUS  = r'\+'
 t_LBRACE    = r'\{'
 t_RBRACE    = r'\}'
 t_DOT       = r'\.'

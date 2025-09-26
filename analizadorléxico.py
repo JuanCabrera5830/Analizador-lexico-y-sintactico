@@ -44,7 +44,7 @@ def index():
                     tokens['identificadores'].append(tok.value)
                 elif tok.type == 'NUMBER':
                     tokens['numeros'].append(str(tok.value))
-                elif tok.type in ['LPAREN', 'RPAREN', 'SEMI', 'ASSIGN', 'RELOP', 'PLUSPLUS', 'LBRACE', 'RBRACE', 'DOT', 'COMMA', 'STRING']:
+                elif tok.type in ['LPAREN', 'RPAREN', 'SEMI', 'ASSIGN', 'RELOP', 'PLUS', 'LBRACE', 'RBRACE', 'DOT', 'COMMA', 'STRING']:
                     tokens['simbolos'].append(tok.value)
                 elif tok.type == 'ERROR':
                     tokens['desconocidos'].append(tok.value)

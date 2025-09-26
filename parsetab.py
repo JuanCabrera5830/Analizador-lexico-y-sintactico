@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ASSIGN COMMA DOT FOR IDENTIFIER IF LBRACE LPAREN NUMBER PLUSPLUS RBRACE RELOP RPAREN SEMI STRING WHILEprogram : control_structurecontrol_structure : for_loop\n| while_loop\n| if_statementfor_loop : FOR LPAREN assignment SEMI condition SEMI increment RPAREN blockassignment : IDENTIFIER ASSIGN NUMBERcondition : IDENTIFIER RELOP NUMBERincrement : IDENTIFIER PLUSPLUSwhile_loop : WHILE LPAREN condition RPAREN blockif_statement : IF LPAREN condition RPAREN blockblock : LBRACE statement_list RBRACEstatement_list : statement\n| statement statement_liststatement : IDENTIFIER DOT IDENTIFIER LPAREN STRING COMMA IDENTIFIER RPAREN SEMI'
+_lr_signature = 'ASSIGN COMMA DOT FOR IDENTIFIER IF LBRACE LPAREN NUMBER PLUS RBRACE RELOP RPAREN SEMI STRING WHILEprogram : control_structurecontrol_structure : for_loop\n| while_loop\n| if_statementfor_loop : FOR LPAREN assignment SEMI condition SEMI increment RPAREN blockassignment : IDENTIFIER ASSIGN NUMBERcondition : IDENTIFIER RELOP NUMBERincrement : IDENTIFIER PLUSwhile_loop : WHILE LPAREN condition RPAREN blockif_statement : IF LPAREN condition RPAREN blockblock : LBRACE statement_list RBRACEstatement_list : statement\n| statement statement_liststatement : IDENTIFIER DOT IDENTIFIER LPAREN STRING COMMA IDENTIFIER RPAREN SEMI'
     
-_lr_action_items = {'FOR':([0,],[6,]),'WHILE':([0,],[7,]),'IF':([0,],[8,]),'$end':([1,2,3,4,5,24,27,34,40,],[0,-1,-2,-3,-4,-9,-10,-11,-5,]),'LPAREN':([6,7,8,39,],[9,10,11,41,]),'IDENTIFIER':([9,10,11,17,25,28,30,36,43,46,],[13,15,15,15,31,33,31,39,44,-14,]),'SEMI':([12,22,23,26,45,],[17,28,-6,-7,46,]),'ASSIGN':([13,],[18,]),'RPAREN':([14,16,26,32,38,44,],[19,21,-7,37,-8,45,]),'RELOP':([15,],[20,]),'NUMBER':([18,20,],[23,26,]),'LBRACE':([19,21,37,],[25,25,25,]),'RBRACE':([29,30,35,46,],[34,-12,-13,-14,]),'DOT':([31,],[36,]),'PLUSPLUS':([33,],[38,]),'STRING':([41,],[42,]),'COMMA':([42,],[43,]),}
+_lr_action_items = {'FOR':([0,],[6,]),'WHILE':([0,],[7,]),'IF':([0,],[8,]),'$end':([1,2,3,4,5,24,27,34,40,],[0,-1,-2,-3,-4,-9,-10,-11,-5,]),'LPAREN':([6,7,8,39,],[9,10,11,41,]),'IDENTIFIER':([9,10,11,17,25,28,30,36,43,46,],[13,15,15,15,31,33,31,39,44,-14,]),'SEMI':([12,22,23,26,45,],[17,28,-6,-7,46,]),'ASSIGN':([13,],[18,]),'RPAREN':([14,16,26,32,38,44,],[19,21,-7,37,-8,45,]),'RELOP':([15,],[20,]),'NUMBER':([18,20,],[23,26,]),'LBRACE':([19,21,37,],[25,25,25,]),'RBRACE':([29,30,35,46,],[34,-12,-13,-14,]),'DOT':([31,],[36,]),'PLUS':([33,],[38,]),'STRING':([41,],[42,]),'COMMA':([42,],[43,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -34,7 +34,7 @@ _lr_productions = [
   ('for_loop -> FOR LPAREN assignment SEMI condition SEMI increment RPAREN block','for_loop',9,'p_for_loop','parser.py',21),
   ('assignment -> IDENTIFIER ASSIGN NUMBER','assignment',3,'p_assignment','parser.py',25),
   ('condition -> IDENTIFIER RELOP NUMBER','condition',3,'p_condition','parser.py',29),
-  ('increment -> IDENTIFIER PLUSPLUS','increment',2,'p_increment','parser.py',33),
+  ('increment -> IDENTIFIER PLUS','increment',2,'p_increment','parser.py',33),
   ('while_loop -> WHILE LPAREN condition RPAREN block','while_loop',5,'p_while_loop','parser.py',40),
   ('if_statement -> IF LPAREN condition RPAREN block','if_statement',5,'p_if_statement','parser.py',47),
   ('block -> LBRACE statement_list RBRACE','block',3,'p_block','parser.py',54),
