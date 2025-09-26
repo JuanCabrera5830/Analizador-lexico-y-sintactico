@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Analizador léxico y sintáctico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f2f2f2;
+        }
+        textarea {
+            width: 100%;
+            font-family: monospace;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #ddd;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .correcto {
+            color: green;
+        }
+        .incorrecto {
+            color: red;
+        }
+        .botones {
+            margin-top: 10px;
+        }
+        button {
+            margin-right: 10px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Analizador léxico y sintáctico</h1>
+
+    <form method="POST">
+        <textarea name="palabra" rows="6" cols="80" required>{{ entrada }}</textarea><br><br>
+        <div class="botones">
+            <button type="submit" name="accion" value="lexico">Analizar léxico</button>
+            <button type="submit" name="accion" value="sintactico">Analizar sintáctico</button>
+        </div>
+    </form>
+
+    {% if mostrar_lexico %}
+    <h2>📘 Resultado del análisis léxico</h2>
+    <table>
+        <tr>
+            <th>Palabra Reservada</th>
+            <th>Identificador</th>
+            <th>Número</th>
+            <th>Símbolo</th>
+            <th>Desconocido</th>
+        </tr>
+        {% for i in range(
+            [tokens.palabras_reservadas|length, tokens.identificadores|length, tokens.numeros|length, tokens.simbolos|length, tokens.desconocidos|length]|max
+        ) %}
+        <tr>
+            <td>{{ tokens.palabras_reservadas[i] if i < tokens.palabras_reservadas|length }}</td>
+            <td>{{ tokens.identificadores[i] if i < tokens.identificadores|length }}</td>
+            <td>{{ tokens.numeros[i] if i < tokens.numeros|length }}</td>
+            <td>{{ tokens.simbolos[i] if i < tokens.simbolos|length }}</td>
+            <td>{{ tokens.desconocidos[i] if i < tokens.desconocidos|length }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    {% if sintaxis %}
+    <div class="resultado {{ 'correcto' if 'Correcto' in sintaxis else 'incorrecto' }}">
+        <p>{{ sintaxis }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
