@@ -1,75 +1,69 @@
+# parser.py
 import ply.yacc as yacc
 from lexer import tokens
 
-# Regla de inicio
+# ----------------------------
+# REGLA DE INICIO
+# ----------------------------
 def p_program(p):
-    '''program : control_structure_list'''
+    '''program : PROGRAMA IDENTIFIER LPAREN RPAREN LBRACE declarations statements END SEMI RBRACE'''
     p[0] = "Sintáctico Correcto"
 
-def p_control_structure_list(p):
-    '''control_structure_list : control_structure
-                              | control_structure control_structure_list'''
+# ----------------------------
+# DECLARACIONES
+# ----------------------------
+def p_declarations(p):
+    '''declarations : declaration declarations
+                    | declaration'''
     pass
 
-# 🔧 REGLA FALTANTE AGREGADA AQUÍ
-def p_control_structure(p):
-    '''control_structure : for_loop
-                         | while_loop
-                         | if_statement'''
+def p_declaration(p):
+    '''declaration : INT identifier_list SEMI'''
     pass
 
-# ----------------
-# FOR LOOP
-# ----------------
-def p_for_loop(p):
-    '''for_loop : FOR LPAREN assignment SEMI condition SEMI increment RPAREN block'''
+def p_identifier_list(p):
+    '''identifier_list : IDENTIFIER
+                       | IDENTIFIER COMMA identifier_list'''
     pass
 
-def p_assignment(p):
-    '''assignment : IDENTIFIER ASSIGN NUMBER'''
+# ----------------------------
+# STATEMENTS
+# ----------------------------
+def p_statements(p):
+    '''statements : statement
+                  | statement statements'''
     pass
 
-def p_condition(p):
-    '''condition : IDENTIFIER RELOP NUMBER'''
+def p_statement_read(p):
+    '''statement : READ IDENTIFIER SEMI'''
     pass
 
-def p_increment(p):
-    '''increment : IDENTIFIER PLUS'''
+def p_statement_assignment(p):
+    '''statement : IDENTIFIER ASSIGN expression SEMI'''
     pass
 
-# ----------------
-# WHILE LOOP
-# ----------------
-def p_while_loop(p):
-    '''while_loop : WHILE LPAREN condition RPAREN block'''
+def p_statement_printf(p):
+    '''statement : PRINTF LPAREN STRING RPAREN'''
     pass
 
-# ----------------
-# IF STATEMENT
-# ----------------
-def p_if_statement(p):
-    '''if_statement : IF LPAREN condition RPAREN block'''
+# ----------------------------
+# EXPRESIONES
+# ----------------------------
+def p_expression_plus(p):
+    '''expression : IDENTIFIER PLUS IDENTIFIER'''
     pass
 
-# ----------------
-# COMMON BLOCK
-# ----------------
-def p_block(p):
-    '''block : LBRACE statement_list RBRACE'''
+def p_expression_number(p):
+    '''expression : NUMBER'''
     pass
 
-def p_statement_list(p):
-    '''statement_list : statement
-                      | statement statement_list'''
+def p_expression_identifier(p):
+    '''expression : IDENTIFIER'''
     pass
 
-def p_statement(p):
-    '''statement : IDENTIFIER DOT IDENTIFIER LPAREN STRING COMMA IDENTIFIER RPAREN SEMI'''
-    pass
-
-# ----------------
-# ERROR HANDLING
-# ----------------
+# ----------------------------
+# MANEJO DE ERRORES
+# ----------------------------
 def p_error(p):
     if p:
         raise SyntaxError(f"Error de sintaxis en '{p.value}'")
