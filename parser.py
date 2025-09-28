@@ -1,13 +1,17 @@
-# parser.py
 import ply.yacc as yacc
 from lexer import tokens
 
 # Regla de inicio
 def p_program(p):
-    '''program : control_structure'''
+    '''program : control_structure_list'''
     p[0] = "Sintáctico Correcto"
 
-# Aceptar cualquiera de las estructuras
+def p_control_structure_list(p):
+    '''control_structure_list : control_structure
+                              | control_structure control_structure_list'''
+    pass
+
+# 🔧 REGLA FALTANTE AGREGADA AQUÍ
 def p_control_structure(p):
     '''control_structure : for_loop
                          | while_loop

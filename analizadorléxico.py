@@ -44,14 +44,14 @@ def index():
                     tokens['identificadores'].append(tok.value)
                 elif tok.type == 'NUMBER':
                     tokens['numeros'].append(str(tok.value))
-                elif tok.type in ['LPAREN', 'RPAREN', 'SEMI', 'ASSIGN', 'RELOP', 'PLUS', 'LBRACE', 'RBRACE', 'DOT', 'COMMA', 'STRING']:
+                elif tok.type in ['LPAREN', 'RPAREN', 'SEMI', 'ASSIGN', 'RELOP', 'PLUS', 'MINUS', 'LBRACE', 'RBRACE', 'DOT', 'COMMA', 'STRING']:
                     tokens['simbolos'].append(tok.value)
                 elif tok.type == 'ERROR':
                     tokens['desconocidos'].append(tok.value)
 
         elif accion == "sintactico":
             try:
-                parser.parse(entrada)
+                parser.parse(entrada, lexer = lexer)
                 resultado_sintactico = "✅ Sintáctico Correcto"
             except SyntaxError as e:
                 resultado_sintactico = f"❌ {str(e)}"

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ASSIGN COMMA DOT FOR IDENTIFIER IF LBRACE LPAREN NUMBER PLUS RBRACE RELOP RPAREN SEMI STRING WHILEprogram : control_structurecontrol_structure : for_loop\n| while_loop\n| if_statementfor_loop : FOR LPAREN assignment SEMI condition SEMI increment RPAREN blockassignment : IDENTIFIER ASSIGN NUMBERcondition : IDENTIFIER RELOP NUMBERincrement : IDENTIFIER PLUSwhile_loop : WHILE LPAREN condition RPAREN blockif_statement : IF LPAREN condition RPAREN blockblock : LBRACE statement_list RBRACEstatement_list : statement\n| statement statement_liststatement : IDENTIFIER DOT IDENTIFIER LPAREN STRING COMMA IDENTIFIER RPAREN SEMI'
+_lr_signature = 'ASSIGN COMMA DOT FOR IDENTIFIER IF LBRACE LPAREN MINUS NUMBER PLUS RBRACE RELOP RPAREN SEMI STRING WHILEprogram : control_structure_listcontrol_structure_list : control_structure\n| control_structure control_structure_listcontrol_structure : for_loop\n| while_loop\n| if_statementfor_loop : FOR LPAREN assignment SEMI condition SEMI increment RPAREN blockassignment : IDENTIFIER ASSIGN NUMBERcondition : IDENTIFIER RELOP NUMBERincrement : IDENTIFIER PLUSwhile_loop : WHILE LPAREN condition RPAREN blockif_statement : IF LPAREN condition RPAREN blockblock : LBRACE statement_list RBRACEstatement_list : statement\n| statement statement_liststatement : IDENTIFIER DOT IDENTIFIER LPAREN STRING COMMA IDENTIFIER RPAREN SEMI'
     
-_lr_action_items = {'FOR':([0,],[6,]),'WHILE':([0,],[7,]),'IF':([0,],[8,]),'$end':([1,2,3,4,5,24,27,34,40,],[0,-1,-2,-3,-4,-9,-10,-11,-5,]),'LPAREN':([6,7,8,39,],[9,10,11,41,]),'IDENTIFIER':([9,10,11,17,25,28,30,36,43,46,],[13,15,15,15,31,33,31,39,44,-14,]),'SEMI':([12,22,23,26,45,],[17,28,-6,-7,46,]),'ASSIGN':([13,],[18,]),'RPAREN':([14,16,26,32,38,44,],[19,21,-7,37,-8,45,]),'RELOP':([15,],[20,]),'NUMBER':([18,20,],[23,26,]),'LBRACE':([19,21,37,],[25,25,25,]),'RBRACE':([29,30,35,46,],[34,-12,-13,-14,]),'DOT':([31,],[36,]),'PLUS':([33,],[38,]),'STRING':([41,],[42,]),'COMMA':([42,],[43,]),}
+_lr_action_items = {'FOR':([0,3,4,5,6,26,29,36,42,],[7,7,-4,-5,-6,-11,-12,-13,-7,]),'WHILE':([0,3,4,5,6,26,29,36,42,],[8,8,-4,-5,-6,-11,-12,-13,-7,]),'IF':([0,3,4,5,6,26,29,36,42,],[9,9,-4,-5,-6,-11,-12,-13,-7,]),'$end':([1,2,3,4,5,6,10,26,29,36,42,],[0,-1,-2,-4,-5,-6,-3,-11,-12,-13,-7,]),'LPAREN':([7,8,9,41,],[11,12,13,43,]),'IDENTIFIER':([11,12,13,19,27,30,32,38,45,48,],[15,17,17,17,33,35,33,41,46,-16,]),'SEMI':([14,24,25,28,47,],[19,30,-8,-9,48,]),'ASSIGN':([15,],[20,]),'RPAREN':([16,18,28,34,40,46,],[21,23,-9,39,-10,47,]),'RELOP':([17,],[22,]),'NUMBER':([20,22,],[25,28,]),'LBRACE':([21,23,39,],[27,27,27,]),'RBRACE':([31,32,37,48,],[36,-14,-15,-16,]),'DOT':([33,],[38,]),'PLUS':([35,],[40,]),'STRING':([43,],[44,]),'COMMA':([44,],[45,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'control_structure':([0,],[2,]),'for_loop':([0,],[3,]),'while_loop':([0,],[4,]),'if_statement':([0,],[5,]),'assignment':([9,],[12,]),'condition':([10,11,17,],[14,16,22,]),'block':([19,21,37,],[24,27,40,]),'statement_list':([25,30,],[29,35,]),'statement':([25,30,],[30,30,]),'increment':([28,],[32,]),}
+_lr_goto_items = {'program':([0,],[1,]),'control_structure_list':([0,3,],[2,10,]),'control_structure':([0,3,],[3,3,]),'for_loop':([0,3,],[4,4,]),'while_loop':([0,3,],[5,5,]),'if_statement':([0,3,],[6,6,]),'assignment':([11,],[14,]),'condition':([12,13,19,],[16,18,24,]),'block':([21,23,39,],[26,29,42,]),'statement_list':([27,32,],[31,37,]),'statement':([27,32,],[32,32,]),'increment':([30,],[34,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,18 +27,20 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> program","S'",1,None,None,None),
-  ('program -> control_structure','program',1,'p_program','parser.py',7),
-  ('control_structure -> for_loop','control_structure',1,'p_control_structure','parser.py',12),
-  ('control_structure -> while_loop','control_structure',1,'p_control_structure','parser.py',13),
-  ('control_structure -> if_statement','control_structure',1,'p_control_structure','parser.py',14),
-  ('for_loop -> FOR LPAREN assignment SEMI condition SEMI increment RPAREN block','for_loop',9,'p_for_loop','parser.py',21),
-  ('assignment -> IDENTIFIER ASSIGN NUMBER','assignment',3,'p_assignment','parser.py',25),
-  ('condition -> IDENTIFIER RELOP NUMBER','condition',3,'p_condition','parser.py',29),
-  ('increment -> IDENTIFIER PLUS','increment',2,'p_increment','parser.py',33),
-  ('while_loop -> WHILE LPAREN condition RPAREN block','while_loop',5,'p_while_loop','parser.py',40),
-  ('if_statement -> IF LPAREN condition RPAREN block','if_statement',5,'p_if_statement','parser.py',47),
-  ('block -> LBRACE statement_list RBRACE','block',3,'p_block','parser.py',54),
-  ('statement_list -> statement','statement_list',1,'p_statement_list','parser.py',58),
-  ('statement_list -> statement statement_list','statement_list',2,'p_statement_list','parser.py',59),
-  ('statement -> IDENTIFIER DOT IDENTIFIER LPAREN STRING COMMA IDENTIFIER RPAREN SEMI','statement',9,'p_statement','parser.py',63),
+  ('program -> control_structure_list','program',1,'p_program','parser.py',6),
+  ('control_structure_list -> control_structure','control_structure_list',1,'p_control_structure_list','parser.py',10),
+  ('control_structure_list -> control_structure control_structure_list','control_structure_list',2,'p_control_structure_list','parser.py',11),
+  ('control_structure -> for_loop','control_structure',1,'p_control_structure','parser.py',16),
+  ('control_structure -> while_loop','control_structure',1,'p_control_structure','parser.py',17),
+  ('control_structure -> if_statement','control_structure',1,'p_control_structure','parser.py',18),
+  ('for_loop -> FOR LPAREN assignment SEMI condition SEMI increment RPAREN block','for_loop',9,'p_for_loop','parser.py',25),
+  ('assignment -> IDENTIFIER ASSIGN NUMBER','assignment',3,'p_assignment','parser.py',29),
+  ('condition -> IDENTIFIER RELOP NUMBER','condition',3,'p_condition','parser.py',33),
+  ('increment -> IDENTIFIER PLUS','increment',2,'p_increment','parser.py',37),
+  ('while_loop -> WHILE LPAREN condition RPAREN block','while_loop',5,'p_while_loop','parser.py',44),
+  ('if_statement -> IF LPAREN condition RPAREN block','if_statement',5,'p_if_statement','parser.py',51),
+  ('block -> LBRACE statement_list RBRACE','block',3,'p_block','parser.py',58),
+  ('statement_list -> statement','statement_list',1,'p_statement_list','parser.py',62),
+  ('statement_list -> statement statement_list','statement_list',2,'p_statement_list','parser.py',63),
+  ('statement -> IDENTIFIER DOT IDENTIFIER LPAREN STRING COMMA IDENTIFIER RPAREN SEMI','statement',9,'p_statement','parser.py',67),
 ]
