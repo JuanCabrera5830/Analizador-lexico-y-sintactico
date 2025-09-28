@@ -15,7 +15,7 @@ reserved = {
 }
 
 t_PLUS = r'\+'
-t_MINUS = r'-'
+t_MINUS = r'\-'
 t_ASSIGN = r'='
 t_RELOP = r'==|!=|<=|>=|<|>'
 t_LPAREN = r'\('
